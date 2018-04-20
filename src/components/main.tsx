@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 });
 
 const defaultZoom: [number] = [6];
-const defaultCenter = [-0.2416815, 51.5285582];
+const defaultCenter = [9.285289,45.605151];
 
 class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>, StateComp> {
   public state = {
@@ -127,7 +127,7 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
     this.props.fetchMonument(k);
 
     setTimeout(() => {
-      browserHistory.replace(`/detail/${k}`);
+      browserHistory.replace(`/reboot/detail/${k}`);
     }, 500);
   };
 

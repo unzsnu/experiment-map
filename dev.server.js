@@ -13,7 +13,7 @@ new WebpackDevServer(webpack(config), {
   stats: { colors: true },
   historyApiFallback: true,
   setup: function(app) {
-    app.use('/api', apiMocker('mocks/api'));
+    app.use('api', apiMocker('mocks/api'));
   }
 }).listen(port, host, function listen(err) {
   if (err) {

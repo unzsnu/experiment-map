@@ -85,7 +85,7 @@ class SidepanDetail extends React.Component<Props, State> {
   };
 
   private onGoBack = () => {
-    browserHistory.push('/');
+    browserHistory.push('/reboot/');
   }
 
   private onFullScreen = () => {
