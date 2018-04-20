@@ -1,7 +1,7 @@
 import { SET_MONUMENTS, SET_PHOTOS } from '../constants/monument';
 
-const api = (endpoint = 'monuments') => `https://unesco-api.balek.io/api/${endpoint}`;
-
+// const api = (endpoint = 'monuments') => `https://unesco-api.balek.io/api/${endpoint}`;
+const api = (endpoint = 'monuments') => `/api/${endpoint}`;
 const req = (url: string, method = 'GET', body?: any) => new Request(url, {
   method,
   headers: new Headers({
@@ -24,6 +24,7 @@ const selectedFields = [
 ];
 
 const buildMonumentsUrl = () => (
+//  `${api()}?select=${selectedFields.join(',')}` //tslint:disable-line
   `${api()}?select=${selectedFields.join(',')}` //tslint:disable-line
 );
 

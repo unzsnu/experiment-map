@@ -130,8 +130,7 @@ class SidepanDetail extends React.Component<Props, State> {
         <div className={css(styles.monumentDetails)}>
           <h1 className={css(styles.title)}>{monument.site}</h1>
           <div className={css(styles.leading)}>{ monument.states }</div>
-          <div className={css(styles.description)}>
-            { monument.short_description }
+          <div className={css(styles.description)} dangerouslySetInnerHTML={{__html: monument.short_description}}>
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-
 var env = process.env.NODE_ENV;
 
 var entries = ['whatwg-fetch', path.join(__dirname, 'src/App')];
@@ -14,7 +13,8 @@ var output = {
 var toCopy = [
   { from: 'index.html' },
   { from: 'Staticfile' },
-  { from: 'favicons', to: 'favicons' }
+  { from: 'favicons', to: 'favicons' },
+  { from: 'mocks', to: 'mocks' }
 ];
 
 var plugins = [
@@ -39,7 +39,15 @@ if (env === 'dev') {
     new webpack.optimize.DedupePlugin()
   ]);
 }
-
+var query = {
+  bypassOnDebug: true,
+  optipng: {
+    optimizationLevel: 7
+  },
+  gifsicle: {
+    interlaced: false
+  }
+};
 module.exports = {
   entry: entries,
   output: output,
@@ -48,6 +56,7 @@ module.exports = {
     extensions: ['', '.ts', '.js', '.tsx', '.css']
   },
   module: {
+    noParse: /node_modules\/mapbox-gl\/dist\/mapbox-gl.js/,
     loaders: [
       {
         test: /\.tsx?$/,
@@ -65,7 +74,7 @@ module.exports = {
         test: /\.(jpe?g|png|gif)$/i,
         loaders: [
           'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          'image-webpack-loader?${JSON.stringify(query)}'
         ]
       }
     ]
