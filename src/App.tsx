@@ -24,9 +24,9 @@ const history = syncHistoryWithStore(browserHistory, store, {
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/reboot" component={Main}>
+      <Route path="/" component={Main}>
         <IndexRoute component={SidepanList}/>
-        <Route path="/reboot/detail/:id" component={SidepanDetail}/>
+        <Route path="/detail/:id" component={SidepanDetail}/>
       </Route>
     </Router>
   </Provider>,

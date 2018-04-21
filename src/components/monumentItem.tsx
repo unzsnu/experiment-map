@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     padding: 16,
     borderBottom: `1px solid ${colors.lightGrey}`,
-    cursor: 'pointer'
+    cursor: 'pointer',
+    overflow: 'auto'
   },
   flag: {
     flex: 1
@@ -57,7 +58,7 @@ const MonumentItem: React.StatelessComponent<Props> = ({ monument, onMouseEnter,
       )
     }
     <div className={css(styles.description)}>
-      <h1>{ monument.site }</h1>
+      <h1 dangerouslySetInnerHTML={{__html: monument.site}}></h1>
       <div className={css(styles.second)}>
         <span className={css(styles.state)}>{ monument.states }</span>
         <span> | { monument.date_inscribed }</span>

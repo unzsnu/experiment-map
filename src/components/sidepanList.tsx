@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     maxHeight: '100vh',
     height: '100vh',
-    width: 500
+    width: '100%'
   },
   list: {
     overflow: 'auto',

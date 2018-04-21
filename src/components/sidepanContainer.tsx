@@ -4,9 +4,11 @@ import { StyleSheet, css } from 'aphrodite/no-important';
 const styles = StyleSheet.create({
   sidepan: {
     zIndex: 10,
-    backgroundColor: 'white',
+    backgroundColor: 'rgb(255,255,255,0.8)',
     top: 0,
-    borderRight: '1px solid rgb(80%, 80%, 80%)'
+    borderRight: '1px solid rgb(80%, 80%, 80%)',
+    maxWidth: '35%',
+    minWidth: '300px'
   }
 });
 

@@ -34,7 +34,7 @@ const MapPopup: React.StatelessComponent<Props> = ({ monument }) => (
     <div className={css(styles.container)}>
       <img className={css(styles.image)} src={monument.image_url}/>
       <div className={css(styles.footer)}>
-        <h1 style={{ fontSize: 15 }}>{ monument.site }</h1>
+        <h1 style={{ fontSize: 15 }} dangerouslySetInnerHTML={{__html: monument.site}}></h1>
       </div>
     </div>
   </Popup>

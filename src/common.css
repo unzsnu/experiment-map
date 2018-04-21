@@ -3,6 +3,9 @@
 html, body {
   height: 100%;
   width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
 }
 
 html, body, div, applet, object, iframe,
@@ -24,10 +27,6 @@ time, mark, audio, video {
   border: 0;
   box-sizing: border-box;
   font-size: 100%;
-  vertical-align: baseline;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 12px;
 }
 
 input {
@@ -73,10 +72,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 18px;
+  font-size: 16px;
   color: #394c5b;
   font-weight: bold;
-  line-height: 24px;
+  line-height: 20px;
 }
 
 h2 {

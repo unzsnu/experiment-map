@@ -23,7 +23,7 @@ export interface RouteProps {
 
 const styles = StyleSheet.create({
   container: {
-    width: 520,
+    width: '100%',
     height: '100vh',
     display: 'flex',
     flexDirection: 'column',
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.darkBlue,
-    fontSize: 24,
-    lineHeight: '32px',
+    fontSize: 22,
+    lineHeight: '30px',
     padding: '4px 0px'
   },
   region: {
@@ -85,7 +85,7 @@ class SidepanDetail extends React.Component<Props, State> {
   };
 
   private onGoBack = () => {
-    browserHistory.push('/reboot/');
+    browserHistory.push('/');
   }
 
   private onFullScreen = () => {
@@ -128,7 +128,7 @@ class SidepanDetail extends React.Component<Props, State> {
           }
         </div>
         <div className={css(styles.monumentDetails)}>
-          <h1 className={css(styles.title)}>{monument.site}</h1>
+          <h1 className={css(styles.title)} dangerouslySetInnerHTML={{__html: monument.site}}></h1>
           <div className={css(styles.leading)}>{ monument.states }</div>
           <div className={css(styles.description)} dangerouslySetInnerHTML={{__html: monument.short_description}}>
           </div>

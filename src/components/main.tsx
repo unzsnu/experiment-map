@@ -127,7 +127,7 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
     this.props.fetchMonument(k);
 
     setTimeout(() => {
-      browserHistory.replace(`/reboot/detail/${k}`);
+      browserHistory.replace(`/detail/${k}`);
     }, 500);
   };
 
