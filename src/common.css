@@ -108,6 +108,20 @@ footer {
   border-radius: 5px;
 }
 
+#rhlogo{
+  animation: rotate 1s linear 500ms infinite;
+}
+@keyframes rotate {
+  0%   {transform: rotate(0deg);}
+  25%  {transform: rotate(90deg);}
+  50%  {transform: rotate(180deg);}
+  100% {transform: rotate(270deg);}
+}
+#sidebar:not(.active){
+  min-width: 0;
+  width: 0;
+}
+
 /* Slick overload */
 
 /*.slick-dots {

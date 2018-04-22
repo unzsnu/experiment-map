@@ -17,7 +17,7 @@ export interface Props {
 }
 
 const SidepanContainer: React.StatelessComponent<Props> = ({ children }) => (
-  <div className={css(styles.sidepan)}>
+  <div id="sidebare" className={css(styles.sidepan)}>
     { children }
   </div>
 );

@@ -11,9 +11,11 @@ import { Props as SidepanListProps } from './sidepanList';
 import { RouteProps } from './sidepanDetail';
 import SidepanContainer from './sidepanContainer';
 import { fetchMonument } from '../actions/monument';
+import Navigation from './navigation';
 
 interface Props {
   getMonuments: () => any;
+  filteredMonuments: string[];
   monuments: MonumentDict;
   fetchMonument: (id: string) => any;
 }
@@ -25,16 +27,28 @@ interface StateComp {
   zoom: [number];
   bounds: number[];
   hoveredAnchor: string;
+  query: string;
+  sort: string;
 };
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex'
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    zIndex: 1,
   }
 });
 
 const defaultZoom: [number] = [6];
 const defaultCenter = [9.285289,45.605151];
+
+const selectToField = {
+  Year: 'date_inscribed',
+  Name: 'site',
+  Country: 'location'
+};
+
+const select = Object.keys(selectToField);
 
 class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>, StateComp> {
   public state = {
@@ -43,7 +57,9 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
     center: defaultCenter,
     filteredMonuments: [],
     bounds: [],
-    hoveredAnchor: 'top'
+    hoveredAnchor: 'top',
+    query: '',
+    sort: selectToField[select[0]]
   };
 
   public componentWillMount() {
@@ -130,13 +146,24 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
       browserHistory.replace(`/detail/${k}`);
     }, 500);
   };
+  private onSearch = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      query: target.value
+    });
+  };
 
+  private onSelect = ({ target }: any) => {
+    this.setState({
+      sort: selectToField[target.value]
+    });
+  };
   public render() {
     const { monuments, children } = this.props;
     const { zoom, center, hoveredItem, filteredMonuments } = this.state;
 
     return (
       <div className={css(styles.container)}>
+        <Navigation onSearch={this.onSearch} onSelect={this.onSelect} select={select}/>
         <SidepanContainer>
         {
           React.cloneElement((children as React.ReactElement<SidepanListProps>), {

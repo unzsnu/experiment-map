@@ -1,31 +1,8 @@
 // tslint:disable
 import * as React from 'react';
-import { StyleSheet, css } from 'aphrodite/no-important';
-
-// const translateKeyframes = {
-//     '0%': {
-//         transform: 'rotate(0deg)',
-//     },
- 
-//     '50%': {
-//         transform: 'rotate(180deg)',
-//     },
- 
-//     '100%': {
-//         transform: 'rotate(360deg)',
-//     }
-// };
-
-const styles = StyleSheet.create({
-  rhlogo : {
-      // animationName: translateKeyframes,
-      // animationDuration: '3s',
-      // animationIterationCount: 'infinite',
-  }
-});
 
 const Logo: React.StatelessComponent<any> = () => (
-    <svg id={css(styles.rhlogo)} width="40px" height="40px" viewBox="0 0 576.469 576.469">
+    <svg id="rhlogo" width="40px" height="40px" viewBox="0 0 576.469 576.469">
     <g>
         <g>
             <path d="M275.762,95.253v38.955l116.228-67.104L275.762,0v39.283c-69.728,2.266-134.601,34.249-178.988,88.56l43.305,35.392    C173.798,121.976,222.893,97.493,275.762,95.253z" fill="#786d78"/>
