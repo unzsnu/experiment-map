@@ -8,7 +8,9 @@ const styles = StyleSheet.create({
     top: 0,
     borderRight: '1px solid rgb(80%, 80%, 80%)',
     maxWidth: '35%',
-    minWidth: '300px'
+    minWidth: '300px',
+    opacity: 1,
+    transition: 'all 1s'
   }
 });
 
@@ -17,7 +19,7 @@ export interface Props {
 }
 
 const SidepanContainer: React.StatelessComponent<Props> = ({ children }) => (
-  <div id="sidebare" className={css(styles.sidepan)}>
+  <div id="sidebar" className={css(styles.sidepan)}>
     { children }
   </div>
 );

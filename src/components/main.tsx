@@ -11,7 +11,6 @@ import { Props as SidepanListProps } from './sidepanList';
 import { RouteProps } from './sidepanDetail';
 import SidepanContainer from './sidepanContainer';
 import { fetchMonument } from '../actions/monument';
-import Navigation from './navigation';
 
 interface Props {
   getMonuments: () => any;
@@ -29,6 +28,7 @@ interface StateComp {
   hoveredAnchor: string;
   query: string;
   sort: string;
+  isSideOpen: boolean;
 };
 
 const styles = StyleSheet.create({
@@ -59,7 +59,8 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
     bounds: [],
     hoveredAnchor: 'top',
     query: '',
-    sort: selectToField[select[0]]
+    sort: selectToField[select[0]],
+    isSideOpen: true
   };
 
   public componentWillMount() {
@@ -146,24 +147,29 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
       browserHistory.replace(`/detail/${k}`);
     }, 500);
   };
-  private onSearch = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  private onClick = ({ target }: any) => {
     this.setState({
-      query: target.value
-    });
-  };
-
-  private onSelect = ({ target }: any) => {
-    this.setState({
-      sort: selectToField[target.value]
+      isSideOpen: !this.state.isSideOpen
     });
   };
   public render() {
     const { monuments, children } = this.props;
-    const { zoom, center, hoveredItem, filteredMonuments } = this.state;
+    const { zoom, center, hoveredItem, filteredMonuments, isSideOpen } = this.state;
 
     return (
-      <div className={css(styles.container)}>
-        <Navigation onSearch={this.onSearch} onSelect={this.onSelect} select={select}/>
+      <div id="main" className={css(styles.container) + (isSideOpen ? ' side__open' : '')}>
+      <button id="close" onClick={this.onClick.bind(this)}>
+        <svg width="12" height="17" viewBox="0 0 12 17">
+          <path
+            d="M10.071 1L3 8.071l7.071 7.071"
+            strokeWidth="3"
+            stroke="#394C5B"
+            fill="none"
+            fillRule="evenodd"
+          />
+        </svg>
+        <span>{isSideOpen ? 'Chiudi' : 'Apri'} la sidebar</span>
+      </button>
         <SidepanContainer>
         {
           React.cloneElement((children as React.ReactElement<SidepanListProps>), {

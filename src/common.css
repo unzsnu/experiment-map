@@ -117,9 +117,14 @@ footer {
   50%  {transform: rotate(180deg);}
   100% {transform: rotate(270deg);}
 }
-#sidebar:not(.active){
+#close {
+  z-index: 1;
+}
+#main:not(.side__open) #sidebar{
   min-width: 0;
   width: 0;
+  opacity: 0;
+  transition: all 1s;
 }
 
 /* Slick overload */

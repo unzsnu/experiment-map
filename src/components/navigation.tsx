@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     display: 'flex',
     borderBottom: '1px solid #edeaea',
-    height: '6vh',
+    // height: '6vh',
     zIndex: 1,
   },
   icon: {

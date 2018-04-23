@@ -7,10 +7,12 @@ import MonumentLayer from './monumentLayer';
 import { MonumentLayout } from './monumentLayer';
 
 const Map = ReactMapboxGl({
-  accessToken: 'pk.eyJ1IjoidW56c251IiwiYSI6ImNqZzlrcmU2azBjcjUycnBmODZhMzFkMmUifQ.c2KtF8vc7NsYM6cCPh5xAA'
+  //accessToken: 'pk.eyJ1IjoidW56c251IiwiYSI6ImNqZzlrcmU2azBjcjUycnBmODZhMzFkMmUifQ.c2KtF8vc7NsYM6cCPh5xAA'
+  accessToken: 'pk.eyJ1IjoibG91aXNjdXJyaWUiLCJhIjoiY3MwR3B3QSJ9._5UXyjEIY0YisuAz9c_tJA'
 });
 
-const mapStyle = 'mapbox://styles/mapbox/streets-v10';
+//const mapStyle = 'mapbox://styles/mapbox/streets-v10';
+const mapStyle = 'mapbox://styles/louiscurrie/cizcq06l600292so15ydwjckr';
 
 const styles = {
   map: {
