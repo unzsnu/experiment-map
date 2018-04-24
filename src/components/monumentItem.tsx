@@ -11,13 +11,6 @@ export interface Props {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    padding: 16,
-    borderBottom: `1px solid ${colors.lightGrey}`,
-    cursor: 'pointer',
-    overflow: 'auto'
-  },
   flag: {
     flex: 1
   },
@@ -48,7 +41,7 @@ const styles = StyleSheet.create({
 
 const MonumentItem: React.StatelessComponent<Props> = ({ monument, onMouseEnter, onMouseLeave, onClick }) => (
   <div
-    className={css(styles.container)}
+    className="container"
     onClick={onClick}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}>

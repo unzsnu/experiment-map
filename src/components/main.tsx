@@ -29,6 +29,7 @@ interface StateComp {
   query: string;
   sort: string;
   isSideOpen: boolean;
+  detail: boolean;
 };
 
 const styles = StyleSheet.create({
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const defaultZoom: [number] = [6];
+const defaultZoom: [number] = [9];
 const defaultCenter = [9.285289,45.605151];
 
 const selectToField = {
@@ -60,7 +61,8 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
     hoveredAnchor: 'top',
     query: '',
     sort: selectToField[select[0]],
-    isSideOpen: true
+    isSideOpen: true,
+    detail: false,
   };
 
   public componentWillMount() {
@@ -118,8 +120,11 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
 
     const boundsArr = [bounds.getSouth() + hDiff, limitedBounds.lng, limitedBounds.lat, bounds.getEast() - vDiff];
 
-    this.setMonumentsAndBounds(boundsArr);
-  }, 500, { leading: true });
+    //this.setMonumentsAndBounds(boundsArr);
+    this.props.getMonuments(boundsArr).then(() => {
+      this.setMonumentsAndBounds(boundsArr);
+    });
+  }, 2000, { leading: true });
 
   private onMouseEnter = (key: string) => {
     this.setState({
@@ -138,7 +143,8 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
 
     this.setState({
       center: selectedMonument.latlng,
-      zoom: [11]
+      zoom: [11],
+      detail: true
     });
 
     this.props.fetchMonument(k);
@@ -154,10 +160,10 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
   };
   public render() {
     const { monuments, children } = this.props;
-    const { zoom, center, hoveredItem, filteredMonuments, isSideOpen } = this.state;
+    const { zoom, center, hoveredItem, filteredMonuments, isSideOpen, detail} = this.state;
 
     return (
-      <div id="main" className={css(styles.container) + (isSideOpen ? ' side__open' : '')}>
+      <div id="main" className={css(styles.container) + (isSideOpen ? ' side__open' : '') + (detail ? ' detail' : '')}>
       <button id="close" onClick={this.onClick.bind(this)}>
         <svg width="12" height="17" viewBox="0 0 12 17">
           <path

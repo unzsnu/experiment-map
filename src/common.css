@@ -125,7 +125,23 @@ footer {
   opacity: 0;
   transition: all 1s;
 }
-
+#main.detail #sidebar{
+  min-width: unset;
+  max-width: unset;
+  width: 100%;
+  opacity: 1;
+  transition: all 1s;
+}
+.container{
+  display: flex;
+  padding: 16px;
+  border-bottom: 1px solid grey;
+  cursor: pointer;
+  overflow: auto
+}
+.container:hover{
+  background-color: white;
+}
 /* Slick overload */
 
 /*.slick-dots {
