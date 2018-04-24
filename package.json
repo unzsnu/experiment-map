@@ -1,6 +1,6 @@
 {
-  "name": "unesco-map",
-  "version": "0.1.1",
+  "name": "experiment-map",
+  "version": "0.0.2",
   "description": "test map",
   "main": "dev.server.js",
   "scripts": {
@@ -11,9 +11,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/alex3165/react-typescript-starter.git"
+    "url": "git://github.com/unzsnu/experiment-map.git"
   },
-  "author": "Alexandre Rieux",
+  "author": "Giovanni Mastronardi",
   "license": "ISC",
   "jest": {
     "transform": "<rootDir>/node_modules/ts-jest/preprocessor.js",
@@ -58,6 +58,7 @@
     "jest": "^22.4.3",
     "jest-cli": "^15.1.1",
     "json-loader": "^0.5.4",
+    "json-server": "^0.12.1",
     "react-addons-test-utils": "^15.3.1",
     "react-transform-hmr": "^1.0.4",
     "redux-logger": "^3.0.1",

@@ -13,18 +13,18 @@ import SidepanContainer from './sidepanContainer';
 import { fetchMonument } from '../actions/monument';
 
 interface Props {
-  getMonuments: () => any;
+  getMonuments: (boundsArr: number[]) => any;
   filteredMonuments: string[];
   monuments: MonumentDict;
   fetchMonument: (id: string) => any;
 }
 
 interface StateComp {
+  bounds: number[];
   filteredMonuments: string[];
   hoveredItem: string;
   center: number[];
   zoom: [number];
-  bounds: number[];
   hoveredAnchor: string;
   query: string;
   sort: string;
@@ -90,7 +90,7 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
     const bounds = map.getBounds();
     const boundsArr = [bounds.getSouth(), bounds.getWest(), bounds.getNorth(), bounds.getEast()];
 
-    this.props.getMonuments().then(() => {
+    this.props.getMonuments(boundsArr).then(() => {
       this.setMonumentsAndBounds(boundsArr);
     });
   };
@@ -199,6 +199,6 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
 export default connect((state: State) => ({
   monuments: state.monuments
 }), dispatch => ({
-  getMonuments: () => dispatch(getMonuments()),
+  getMonuments: (boundsArr: number[]) => dispatch(getMonuments(boundsArr)),
   fetchMonument: (id: string) => dispatch(fetchMonument(id))
 }))(Main);
