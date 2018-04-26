@@ -29,7 +29,6 @@ interface StateComp {
   query: string;
   sort: string;
   isSideOpen: boolean;
-  detail: boolean;
 };
 
 const styles = StyleSheet.create({
@@ -62,7 +61,6 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
     query: '',
     sort: selectToField[select[0]],
     isSideOpen: true,
-    detail: false,
   };
 
   public componentWillMount() {
@@ -126,10 +124,11 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
     });
   }, 2000, { leading: true });
 
-  private onMouseEnter = (key: string) => {
+  private onMouseEnter = (k: string) => {
     this.setState({
-      hoveredItem: key
+      hoveredItem: k
     });
+
   }
 
   private onMouseLeave = () => {
@@ -138,13 +137,29 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
     });
   }
 
+  private onListMouseEnter = (k: string) => {
+    const selectedMonument = this.props.monuments[k];
+    this.setState({
+      hoveredItem: k,
+      center: selectedMonument.latlng,
+      zoom: [11]
+    });
+
+  }
+
+  private onListMouseLeave = () => {
+    this.setState({
+      hoveredItem: '',
+      zoom: defaultZoom
+    });
+  }
+
   private onMonumentClick = (k: string) => {
     const selectedMonument = this.props.monuments[k];
 
     this.setState({
       center: selectedMonument.latlng,
-      zoom: [11],
-      detail: true
+      zoom: [11]
     });
 
     this.props.fetchMonument(k);
@@ -159,11 +174,11 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
     });
   };
   public render() {
-    const { monuments, children } = this.props;
-    const { zoom, center, hoveredItem, filteredMonuments, isSideOpen, detail} = this.state;
+    const { monuments, children} = this.props;
+    const { zoom, center, hoveredItem, filteredMonuments, isSideOpen} = this.state;
 
     return (
-      <div id="main" className={css(styles.container) + (isSideOpen ? ' side__open' : '') + (detail ? ' detail' : '')}>
+      <div id="main" className={css(styles.container) + (isSideOpen ? ' side__open' : '')}>
       <button id="close" onClick={this.onClick.bind(this)}>
         <svg width="12" height="17" viewBox="0 0 12 17">
           <path
@@ -179,8 +194,8 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
         <SidepanContainer>
         {
           React.cloneElement((children as React.ReactElement<SidepanListProps>), {
-            onMouseEnter: this.onMouseEnter,
-            onMouseLeave: this.onMouseLeave,
+            onMouseEnter: this.onListMouseEnter,
+            onMouseLeave: this.onListMouseLeave,
             filteredMonuments: filteredMonuments as string[],
             onSelectItem: this.onMonumentClick
           })
