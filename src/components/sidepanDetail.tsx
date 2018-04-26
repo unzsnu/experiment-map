@@ -111,7 +111,7 @@ class SidepanDetail extends React.Component<Props, State> {
     const hasPictures = monument.pictures && monument.pictures.length > 0;
 
     return (
-      <div className={css(styles.container)}>
+      <div id="m_card" className={css(styles.container)}>
         {
           isFullscreen && <Fullscreen pictures={monument.pictures} onDismissFullscreen={this.onDismissFullscreen}/>
         }
