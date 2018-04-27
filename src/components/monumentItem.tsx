@@ -8,6 +8,7 @@ export interface Props {
   onMouseEnter: React.MouseEventHandler<HTMLElement>;
   onMouseLeave: React.MouseEventHandler<HTMLElement>;
   onClick: React.MouseEventHandler<HTMLElement>;
+  distance: Monument["distance"];
 }
 
 const styles = StyleSheet.create({
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const MonumentItem: React.StatelessComponent<Props> = ({ monument, onMouseEnter, onMouseLeave, onClick }) => (
+const MonumentItem: React.StatelessComponent<Props> = ({ monument, onMouseEnter, onMouseLeave, onClick, distance }) => (
   <div
     className="container"
     onClick={onClick}
@@ -54,7 +55,7 @@ const MonumentItem: React.StatelessComponent<Props> = ({ monument, onMouseEnter,
       <h1 dangerouslySetInnerHTML={{__html: monument.site}}></h1>
       <div className={css(styles.second)}>
         <span className={css(styles.state)}>{ monument.states }</span>
-        <span> | { monument.date_inscribed }</span>
+        <span> | { monument.date_inscribed } | dist: { distance }</span>
       </div>
     </div>
     <div className={css(styles.image)}>

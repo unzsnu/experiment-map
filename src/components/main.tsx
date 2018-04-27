@@ -207,7 +207,8 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
             onMouseEnter: this.onListMouseEnter,
             onMouseLeave: this.onListMouseLeave,
             filteredMonuments: filteredMonuments as string[],
-            onSelectItem: this.onMonumentClick
+            onSelectItem: this.onMonumentClick,
+            center: this.state.center
           })
         }
         </SidepanContainer>
