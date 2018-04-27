@@ -118,14 +118,15 @@ footer {
 }
 #close {
   z-index: 1;
-width: 10rem;
-line-height: 2rem;
-margin: 1rem auto;
-border-radius: 1rem;
-background-color: gainsboro;
-font-family: inherit;
-text-transform: uppercase;
-position: relative;
+  width: 10rem;
+  line-height: 2rem;
+  margin: 1rem auto;
+  border-radius: 1rem;
+  background-color: gainsboro;
+  font-family: inherit;
+  text-transform: uppercase;
+  position: absolute;
+  left: 22rem;
 }
 #close:hover {
   opacity: .7;
@@ -140,6 +141,25 @@ position: relative;
   width: 0;
   opacity: 0;
   transition: all 1s;
+}
+#main.side__open #sidebar{
+  z-index: 10;
+  background-color: rgb(255,255,255,0.8);
+  top: 0;
+  border-right: 1px solid rgb(80%, 80%, 80%);
+  max-width: 35%;
+  min-width: 300px;
+  opacity: 1;
+  transition: all 1s;
+}
+@media only screen and (max-width: 600px) {
+  #close {
+    left: 0;
+  }
+  #main.side__open #sidebar{
+    margin-top: 4rem;
+    height: calc(100vh - 4rem);
+  }
 }
 .detail {
   position: absolute;

@@ -29,6 +29,7 @@ interface StateComp {
   query: string;
   sort: string;
   isSideOpen: boolean;
+  reloadList: boolean;
 };
 
 const styles = StyleSheet.create({
@@ -61,6 +62,7 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
     query: '',
     sort: selectToField[select[0]],
     isSideOpen: true,
+    reloadList: true
   };
 
   public componentWillMount() {
@@ -90,9 +92,11 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
     const bounds = map.getBounds();
     const boundsArr = [bounds.getSouth(), bounds.getWest(), bounds.getNorth(), bounds.getEast()];
 
-    this.props.getMonuments(boundsArr).then(() => {
-      this.setMonumentsAndBounds(boundsArr);
-    });
+      this.props.getMonuments(boundsArr).then(() => {
+        this.setMonumentsAndBounds(boundsArr);
+      });
+
+
   };
 
   private setMonumentsAndBounds = (bounds: number[]) => {
@@ -110,6 +114,9 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
   };
 
   private BoundsChanged: MapEvent = throttle((map: any) => {
+    if(!this.state.reloadList){
+      return
+    }
     const bounds = map.getBounds();
     const limitedBounds = map.unproject([60, 60]);
 
@@ -126,7 +133,7 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
 
   private onMouseEnter = (k: string) => {
     this.setState({
-      hoveredItem: k
+      hoveredItem: k,
     });
 
   }
@@ -142,7 +149,8 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
     this.setState({
       hoveredItem: k,
       center: selectedMonument.latlng,
-      zoom: [11]
+      zoom: [11],
+      reloadList: false   
     });
 
   }
@@ -150,7 +158,8 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
   private onListMouseLeave = () => {
     this.setState({
       hoveredItem: '',
-      zoom: defaultZoom
+      zoom: defaultZoom,
+      reloadList: true   
     });
   }
 
@@ -159,7 +168,8 @@ class Main extends React.Component<Props & RouteComponentProps<RouteProps, void>
 
     this.setState({
       center: selectedMonument.latlng,
-      zoom: [11]
+      zoom: [11],
+      isSideOpen: true
     });
 
     this.props.fetchMonument(k);

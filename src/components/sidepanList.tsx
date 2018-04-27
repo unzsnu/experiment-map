@@ -10,12 +10,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     maxHeight: '100vh',
-    height: '100vh',
+    height: '100%',
     width: '100%'
   },
   list: {
     overflow: 'auto',
-    maxHeight: '94vh'
+    maxHeight: '100%'
   }
 });
 
@@ -35,7 +35,8 @@ export interface State {
 const selectToField = {
   Year: 'date_inscribed',
   Name: 'site',
-  Country: 'location'
+  Country: 'location',
+  Proximity: 'latlon'
 };
 
 const select = Object.keys(selectToField);
